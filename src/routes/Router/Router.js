@@ -3,8 +3,11 @@ import Main from "../../layout/Main";
 import AllServices from "../../pages/AllServices/AllServices";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
+import MyReview from "../../pages/MyReview/MyReview";
+import MyService from "../../pages/MyService/MyService";
 import Register from "../../pages/Register/Register";
 import ServiceDetails from "../../pages/ServiceDetails/ServiceDetails";
+import PriviteRoute from "../PriviteRoute";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +26,14 @@ export const router = createBrowserRouter([
             {
                 path:'/allServices',
                 element:<AllServices/>
+            },
+            {
+                path:'/myreview',
+                element:<PriviteRoute><MyReview/></PriviteRoute>
+            },
+            {
+                path:'/myService',
+                element:<PriviteRoute><MyService/></PriviteRoute>
             },
             {
                 path:'/login',

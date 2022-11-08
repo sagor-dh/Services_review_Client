@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthProvider'
 
 function Login() {
+    
+    const { userLogin } = useContext(AuthContext)
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        userLogin(email, password)
+            .then(result => {
+                console.log(result)
+                form.reset()
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <div>
             <section className="p-6 dark:bg-gray-800 dark:text-gray-100">
@@ -9,7 +27,7 @@ function Login() {
                     <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 dark:bg-gray-900">
                         <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
                             <h1 className="text-2xl font-bold text-center">Login</h1>
-                            <form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                            <form onSubmit={handleFormSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
                                 <div className="space-y-1 text-sm">
                                     <label htmlFor="eamil" className="block dark:text-gray-400">Email</label>
                                     <input type="email" name="email" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />

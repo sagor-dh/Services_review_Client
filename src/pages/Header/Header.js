@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../../images/logo.png'
 import { FaBars, FaTimes } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 function Header() {
+    const { user, userLogout } = useContext(AuthContext)
     const [toggle, setToggle] = useState(true)
-    console.log(toggle)
+
+    const handelLogout = () =>{
+        userLogout()
+        .then(()=>{})
+        .catch(()=>{})
+    }
+
     return (
         <div>
             <header className="p-4 dark:bg-gray-800 dark:text-gray-100 relative">
@@ -21,6 +29,12 @@ function Header() {
                             <li>
                                 <NavLink to='/allServices'>Services</NavLink>
                             </li>
+                            <li>
+                                <NavLink to='/myreview'>My Review</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/myService'>My Service</NavLink>
+                            </li>
                         </ul>
                     </div>
 
@@ -32,13 +46,25 @@ function Header() {
                             <li>
                                 <NavLink to='/allServices'>Services</NavLink>
                             </li>
+                            <li>
+                                <NavLink to='/myreview'>My Review</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/myService'>My Service</NavLink>
+                            </li>
                         </ul>
                     </div>
                     <div>
-                        <NavLink to='/login'>
-                            <button className='btn bg-indigo-600 px-5 py-2'>Login</button>
-                        </NavLink>
-                        <img src={logo} alt="luser" className='w-12 object-cover' />
+                        {
+                            user && user.uid ? <div className='flex'>
+                                <img src={logo} alt="luser" className='w-12 object-cover mr-3' />
+                                <button onClick={handelLogout} className='btn bg-indigo-600 px-5 py-2'>Log out</button>
+                            </div> :
+                                <NavLink to='/login'>
+                                    <button className='btn bg-indigo-600 px-5 py-2'>Log in</button>
+                                </NavLink>
+
+                        }
                     </div>
                     <div className='md:hidden'>
                         {
