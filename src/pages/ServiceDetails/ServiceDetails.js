@@ -29,7 +29,6 @@ function ServiceDetails() {
                 </div>
             </section>
             <section>
-
                 <Review service={service} />
             </section>
         </div>

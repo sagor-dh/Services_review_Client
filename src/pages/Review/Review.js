@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthProvider'
 
 function Review({ service }) {
     const { user } = useContext(AuthContext)
+    const location = useLocation()
 
     const handleReviewSubmit = (event) =>{
         event.preventDefault()
@@ -40,7 +41,7 @@ function Review({ service }) {
                         <br />
                         <button type="submit" className='btn bg-white text-black px-8 py-2 mt-5'>Review</button>
                     </form> :
-                    <p className='text-2xl'>Please login to add a review. <Link to='/login' className='text-rose-600 font-semibold underline text-3xl'>Log in</Link></p>
+                    <p className='text-2xl'>Please login to add a review. <Link to='/login' state={{from: location}} replace className='text-rose-600 font-semibold underline text-3xl'>Log in</Link></p>
             }
 
         </div>
