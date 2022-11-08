@@ -57,7 +57,7 @@ function Header() {
                     <div>
                         {
                             user && user.uid ? <div className='flex'>
-                                <img src={logo} alt="luser" className='w-12 object-cover mr-3' />
+                                <img src={user?.photoURL ? user.photoURL : logo} alt="luser" className='w-12 object-cover mr-3' />
                                 <button onClick={handelLogout} className='btn bg-indigo-600 px-5 py-2'>Log out</button>
                             </div> :
                                 <NavLink to='/login'>

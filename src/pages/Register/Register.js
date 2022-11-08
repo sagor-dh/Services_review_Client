@@ -1,7 +1,10 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { getAuth, updateProfile } from "firebase/auth";
 import { AuthContext } from '../../context/AuthProvider'
+import app from '../../fairbase/fairbase.config';
 
+const auth = getAuth(app)
 function Register() {
     const {userRegister} = useContext(AuthContext)
 
@@ -10,15 +13,25 @@ function Register() {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        const photourl = form.photourl.value;
+        const name = form.username.value;
 
         userRegister(email, password)
         .then(result => {
-            console.log(result)
+            userUpdateProfile(name, photourl)
             form.reset()
         })
         .catch(err => console.log(err))
     }
 
+    const userUpdateProfile = (name, photourl) =>{
+        updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photourl
+        })
+        .then(()=>{})
+        .catch((err) => console.log(err))
+    }
     return (
         <div>
             <section className="p-6 dark:bg-gray-800 dark:text-gray-100">
@@ -29,7 +42,11 @@ function Register() {
                             <form onSubmit={handleFormSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
                                 <div className="space-y-1 text-sm">
                                     <label htmlFor="username" className="block dark:text-gray-400">Username</label>
-                                    <input type="text" name="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                                    <input type="text" name="username" placeholder="Username" className="w-full px-4 py-3 rounded-md border border-white dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                                </div>
+                                <div className="space-y-1 text-sm">
+                                    <label htmlFor="photourl" className="block dark:text-gray-400">PhotoURL</label>
+                                    <input type="text" name="photourl" placeholder="PhotoURL" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                                 </div>
                                 <div className="space-y-1 text-sm">
                                     <label htmlFor="email" className="block dark:text-gray-400">Email</label>

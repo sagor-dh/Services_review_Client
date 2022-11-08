@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLoaderData } from 'react-router-dom'
+import { useLoaderData } from 'react-router-dom'
+import AddReview from '../AddReview/AddReview'
 import Review from '../Review/Review'
 
 function ServiceDetails() {
@@ -11,7 +12,7 @@ function ServiceDetails() {
         fetch(`http://localhost:5000/review/${_id}`)
             .then(res => res.json())
             .then(data => setShowReview(data))
-    }, [])
+    }, [_id])
 
 
     console.log(showReview)
@@ -25,11 +26,16 @@ function ServiceDetails() {
                     <div className="mt-6 mb-2">
                         <p className="dark:text-gray-100">{details}</p>
                         <p className="dark:text-gray-100 font-semibold mt-3">Fees: {fees}</p>
+
                     </div>
                 </div>
             </section>
-            <section>
-                <Review service={service} />
+            <section className='dark:bg-gray-900 dark:text-gray-50'>
+                <div className="container flex flex-col items-center mx-auto mb-12 md:p-10 md:px-12">
+                    <h1 className="p-4 text-4xl font-semibold leading-none text-center">What our customers are saying about us</h1>
+                </div>
+                <Review showReview={showReview}/>
+                <AddReview service={service} />
             </section>
         </div>
     )
