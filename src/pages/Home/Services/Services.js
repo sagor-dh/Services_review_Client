@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 function Services() {
   const [services, setServices] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:5000/services`)
-      .then(res => res.json())
-      .then(data => setServices(data))
-  }, [])
+        .then(res => res.json())
+        .then(data => setServices(data))
+}, [])
+
+
 
   return (
     <div>
@@ -19,7 +23,11 @@ function Services() {
             const { _id, title, images, fees, details } = service
             return (
               <div key={_id} className=" rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
-                <img src={images} alt={title} className="object-contain w-full rounded-t-md h-72 dark:bg-gray-500" />
+                <PhotoProvider>
+                  <PhotoView src={images}>
+                    <img src={images} alt={title} className="object-contain w-full rounded-t-md h-72 dark:bg-gray-500 cursor-pointer" />
+                  </PhotoView>
+                </PhotoProvider>
                 <div className="flex flex-col justify-between p-6 space-y-8">
                   <div className="space-y-2">
                     <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>

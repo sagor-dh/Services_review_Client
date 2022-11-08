@@ -14,8 +14,7 @@ function ServiceDetails() {
             .then(data => setShowReview(data))
     }, [_id])
 
-
-    console.log(showReview)
+  
 
     return (
         <div>
@@ -34,7 +33,7 @@ function ServiceDetails() {
                 <div className="container flex flex-col items-center mx-auto mb-12 md:p-10 md:px-12">
                     <h1 className="p-4 text-4xl font-semibold leading-none text-center">What our customers are saying about us</h1>
                 </div>
-                <Review showReview={showReview}/>
+                <Review showReview={showReview} />
                 <AddReview service={service} />
             </section>
         </div>

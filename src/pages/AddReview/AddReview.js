@@ -6,29 +6,32 @@ function AddReview({ service }) {
     const { user } = useContext(AuthContext)
     const location = useLocation()
 
-    const handleReviewSubmit = (event) =>{
+    const handleReviewSubmit = (event) => {
         event.preventDefault()
         const textarea = event.target.textarea.value;
         const reviewerInfo = {
-            serviceId : service._id,
-            serviceTitle : service.title,
-            userEmail : user.email,
+            serviceId: service._id,
+            serviceTitle: service.title,
+            userEmail: user.email,
             userName: user.displayName,
             userPhoto: user.photoURL,
             textarea
         }
-        
-        fetch('http://localhost:5000/review',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+
+        fetch('http://localhost:5000/review', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(reviewerInfo)
+            body: JSON.stringify(reviewerInfo)
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+            .then(res => res.json())
+            .then(data => console.log(data))
+        event.target.textarea.value = ''
 
     }
+
+    
 
     return (
         <div className=' pb-9'>
@@ -44,7 +47,7 @@ function AddReview({ service }) {
                         <br />
                         <button type="submit" className='btn bg-white text-black px-8 py-2 mt-5'>Review</button>
                     </form> :
-                    <p className='text-2xl'>Please login to add a review. <Link to='/login' state={{from: location}} replace className='text-rose-600 font-semibold underline text-3xl'>Log in</Link></p>
+                    <p className='text-2xl'>Please login to add a review. <Link to='/login' state={{ from: location }} replace className='text-rose-600 font-semibold underline text-3xl'>Log in</Link></p>
             }
 
         </div>
