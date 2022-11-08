@@ -33,7 +33,10 @@ function Header() {
                                 <NavLink to='/myreview'>My Review</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/myService'>My Service</NavLink>
+                                <NavLink to='/addService'>Add Service</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/block'>Block</NavLink>
                             </li>
                         </ul>
                     </div>
@@ -50,7 +53,10 @@ function Header() {
                                 <NavLink to='/myreview'>My Review</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/myService'>My Service</NavLink>
+                                <NavLink to='/addService'>Add Service</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/block'>Block</NavLink>
                             </li>
                         </ul>
                     </div>
