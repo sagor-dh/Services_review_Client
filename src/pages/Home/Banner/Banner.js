@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Slider from "react-slick";
 import bannerImg from '../../../images/banner.png'
 import "slick-carousel/slick/slick.css";
@@ -26,7 +26,7 @@ function Banner() {
                             <h1 className='text-5xl font-bold'>Hello</h1>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, incidunt?</p>
                         </div>
-                        <img src={bannerImg} className='md:w-1/2 relative' />
+                        <img alt='img' src={bannerImg} className='md:w-1/2 relative' />
                     </div>
                 </div>
                 <div>
@@ -35,7 +35,7 @@ function Banner() {
                             <h1 className='text-5xl font-bold'>Hey</h1>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, incidunt?</p>
                         </div>
-                        <img src={bannerImg} className='md:w-1/2 relative' />
+                        <img alt='img' src={bannerImg} className='md:w-1/2 relative' />
                     </div>
                 </div>
                 <div>
@@ -44,7 +44,7 @@ function Banner() {
                             <h1 className='text-5xl font-bold'>Hi</h1>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, incidunt?</p>
                         </div>
-                        <img src={bannerImg} className='md:w-1/2 relative' />
+                        <img alt='img' src={bannerImg} className='md:w-1/2 relative' />
                     </div>
                 </div>
             </Slider>

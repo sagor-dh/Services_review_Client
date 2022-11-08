@@ -24,7 +24,7 @@ function Header() {
                         </ul>
                     </div>
 
-                    <div className={`md:hidden absolute top-[100%] ${toggle?'left-[-100%]':'left-0'} transition-all  bg-gray-800 min-w-[300px] w-auto z-40`}>
+                    <div className={`md:hidden absolute top-[100%] ${toggle ? 'left-[-100%]' : 'left-0'} transition-all  bg-gray-800 min-w-[300px] w-auto z-40`}>
                         <ul className=''>
                             <li>
                                 <NavLink to='/'>Home</NavLink>
@@ -35,15 +35,17 @@ function Header() {
                         </ul>
                     </div>
                     <div>
-                        <button className='btn bg-indigo-600 px-5 py-2'>Login</button>
+                        <NavLink to='/login'>
+                            <button className='btn bg-indigo-600 px-5 py-2'>Login</button>
+                        </NavLink>
                         <img src={logo} alt="luser" className='w-12 object-cover' />
                     </div>
                     <div className='md:hidden'>
                         {
-                            toggle?<FaBars className='text-3xl' onClick={()=>setToggle(!toggle)} />:
-                            <FaTimes className='text-3xl' onClick={()=>setToggle(!toggle)} />
+                            toggle ? <FaBars className='text-3xl' onClick={() => setToggle(!toggle)} /> :
+                                <FaTimes className='text-3xl' onClick={() => setToggle(!toggle)} />
                         }
-                        
+
                     </div>
                 </div>
 

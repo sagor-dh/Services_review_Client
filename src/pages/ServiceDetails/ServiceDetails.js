@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom'
 
 function ServiceDetails() {
     const service = useLoaderData()
-    const { _id, title, images, fees, details } = service
+    const { title, images, fees, details } = service
     return (
         <div>
             <section className=''>

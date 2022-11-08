@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
 import AllServices from "../../pages/AllServices/AllServices";
 import Home from "../../pages/Home/Home";
-import Services from "../../pages/Home/Services/Services";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Register/Register";
 import ServiceDetails from "../../pages/ServiceDetails/ServiceDetails";
 
 export const router = createBrowserRouter([
@@ -22,6 +23,14 @@ export const router = createBrowserRouter([
             {
                 path:'/allServices',
                 element:<AllServices/>
+            },
+            {
+                path:'/login',
+                element:<Login/>
+            },
+            {
+                path:'/register',
+                element:<Register/>
             }
         ]
     }
