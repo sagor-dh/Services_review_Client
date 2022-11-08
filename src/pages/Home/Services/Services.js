@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Services() {
   const [services, setServices] = useState([])
@@ -10,7 +11,7 @@ function Services() {
       .then(data => setServices(data))
   }, [loadData])
 
-  const handleLoadData = () =>{
+  const handleLoadData = () => {
     setLoadData(6)
   }
 
@@ -20,16 +21,23 @@ function Services() {
       <div className='grid grid-cols-3 gap-5'>
         {
           services.map(service => {
+            const { _id, title, images, fees, details } = service
             return (
-              <div key={service._id} className=" rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
-                <img src="https://source.unsplash.com/random/300x300/?2" alt="" className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
+              <div key={_id} className=" rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
+                <img src={images} alt={title} className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
                 <div className="flex flex-col justify-between p-6 space-y-8">
                   <div className="space-y-2">
-                    <h2 className="text-3xl font-semibold tracking-wide">{service.title}</h2>
-                    <p className="dark:text-gray-100">Curabitur luctus erat nunc, sed ullamcorper erat vestibulum eget.</p>
+                    <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
+                    <p className="dark:text-gray-100">{details}</p>
+                    <p className="dark:text-gray-100">Fees: {fees}</p>
                   </div>
-                  <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900">Read more</button>
+                  <Link to={`/service/${_id}`}>
+                    <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900">
+                      Viwe Details
+                    </button>
+                  </Link>
                 </div>
+
               </div>
             )
           })
