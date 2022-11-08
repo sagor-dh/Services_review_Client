@@ -34,13 +34,14 @@ function MyReview() {
 
   return (
     <div>
-      <div className=" mx-auto  dark:text-gray-100">
-        <div className="overflow-x-auto">
+      <div className="bg-gray-800 text-gray-100 py-28">
+        <h1 className='text-4xl font-bold'>My Reviews</h1>
+        <div className="overflow-x-auto mt-7">
           <table className="w-full text-xs text-left ">
             <colgroup>
             </colgroup>
             <thead>
-              <tr className="dark:bg-gray-700">
+              <tr className="bg-gray-700">
                 <th className="p-3">Name</th>
                 <th className="p-3">Title</th>
                 <th className="p-3">Email</th>
@@ -48,7 +49,7 @@ function MyReview() {
                 <th className="p-3">Acction</th>
               </tr>
             </thead>
-            <tbody className="border-b dark:bg-gray-900 dark:border-gray-700">
+            <tbody className="border-b  border-gray-700">
               {
                 reviews.map(reiew => {
                   const {_id, userName, userEmail, serviceTitle, textarea} = reiew

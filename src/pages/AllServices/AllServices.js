@@ -18,17 +18,17 @@ function AllServices() {
                     services.map(service => {
                         const { _id, title, images, fees, details } = service
                         return (
-                            <div key={_id} className=" rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
+                            <div key={_id} className=" rounded-md shadow-md bg-gray-900 text-gray-100">
                                 <PhotoProvider>
                                     <PhotoView src={images}>
-                                        <img src={images} alt={title} className="object-contain w-full rounded-t-md h-72 dark:bg-gray-500 cursor-pointer" />
+                                        <img src={images} alt={title} className="object-contain w-full rounded-t-md h-72 bg-gray-500 cursor-pointer" />
                                     </PhotoView>
                                 </PhotoProvider>
                                 <div className="flex flex-col justify-between p-6 space-y-8">
                                     <div className="space-y-2 min-h-[200px] h-full">
                                         <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
-                                        <p className="dark:text-gray-100">{details.length > 150 ? <span>{details.slice(0, 150) + '...'}</span> : <span>{details}</span>}</p>
-                                        <p className="dark:text-gray-100">Fees: {fees}</p>
+                                        <p className="text-gray-100">{details.length > 150 ? <span>{details.slice(0, 150) + '...'}</span> : <span>{details}</span>}</p>
+                                        <p className="text-gray-100">Fees: {fees}</p>
                                     </div>
                                     <Link to={`/service/${_id}`} >
                                         <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-indigo-600 text-white">

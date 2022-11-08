@@ -16,7 +16,7 @@ function Header() {
 
     return (
         <div>
-            <header className="p-4 dark:bg-gray-800 dark:text-gray-100 relative">
+            <header className="p-4 bg-gray-900 text-gray-50 relative">
                 <div className='flex justify-between items-center'>
                     <div>
                         <img src={logo} alt="logo" className='w-24 object-cover' />

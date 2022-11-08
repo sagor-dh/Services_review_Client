@@ -40,10 +40,10 @@ function AddReview({ service }) {
                 user && user.uid ?
                     <form onSubmit={handleReviewSubmit} className='max-w-[500px] mx-auto mt-5'>
                         <div className='grid grid-cols-2 gap-4'>
-                            <input type="text" name="name" className='bg-gray-900 border border-white  h-10' defaultValue={user?.displayName} readOnly />
-                            <input type="email" name="email" className='bg-gray-900 border border-white   h-10 ' defaultValue={user?.email} readOnly />
+                            <input type="text" name="name" className='bg-gray-800 border border-white  h-10' defaultValue={user?.displayName} readOnly />
+                            <input type="email" name="email" className='bg-gray-800 border border-white   h-10 ' defaultValue={user?.email} readOnly />
                         </div>
-                        <textarea name='textarea' placeholder='Your Review' className='bg-gray-900 border border-white w-full h-28 mt-5'></textarea>
+                        <textarea name='textarea' placeholder='Your Review' className='bg-gray-800 border border-white w-full h-28 mt-5'></textarea>
                         <br />
                         <button type="submit" className='btn bg-white text-black px-8 py-2 mt-5'>Review</button>
                     </form> :

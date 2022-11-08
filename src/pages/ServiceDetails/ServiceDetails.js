@@ -17,19 +17,19 @@ function ServiceDetails() {
   
 
     return (
-        <div>
-            <section className='dark:bg-gray-900 dark:text-gray-50'>
+        <div className='bg-gray-800 text-gray-50'>
+            <section>
                 <div className="max-w-5xl mx-auto  p-6 rounded-md shadow-md ">
                     <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
-                    <img src={images} alt={title} className="object-contain w-full rounded-md h-[400px] dark:bg-gray-500" />
+                    <img src={images} alt={title} className="object-contain w-full rounded-md h-[400px] bg-gray-500" />
                     <div className="mt-6 mb-2">
-                        <p className="dark:text-gray-100">{details}</p>
-                        <p className="dark:text-gray-100 font-semibold mt-3">Fees: {fees}</p>
+                        <p className="text-gray-100">{details}</p>
+                        <p className="text-gray-100 font-semibold mt-3">Fees: {fees}</p>
 
                     </div>
                 </div>
             </section>
-            <section className='dark:bg-gray-900 dark:text-gray-50 pt-[140px]'>
+            <section className='pt-[140px]'>
                 <div className="container flex flex-col items-center mx-auto ">
                     <h1 className=" text-4xl font-semibold leading-none text-center">What our customers are saying about us</h1>
                 </div>
