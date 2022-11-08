@@ -19,7 +19,7 @@ function Header() {
                                 <NavLink to='/'>Home</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/services'>Services</NavLink>
+                                <NavLink to='/allServices'>Services</NavLink>
                             </li>
                         </ul>
                     </div>
@@ -30,7 +30,7 @@ function Header() {
                                 <NavLink to='/'>Home</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/services'>Services</NavLink>
+                                <NavLink to='/allServices'>Services</NavLink>
                             </li>
                         </ul>
                     </div>

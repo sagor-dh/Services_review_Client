@@ -3,35 +3,30 @@ import { Link } from 'react-router-dom'
 
 function Services() {
   const [services, setServices] = useState([])
-  const [loadData, setLoadData] = useState(3)
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services?size=${loadData}`)
+    fetch(`http://localhost:5000/services`)
       .then(res => res.json())
       .then(data => setServices(data))
-  }, [loadData])
+  }, [])
 
-  const handleLoadData = () => {
-    setLoadData(6)
-  }
-
-  console.log(services)
   return (
     <div>
+      <h1 className='text-5xl font-bold text-center mt-7 mb-5'>My Service</h1>
       <div className='grid grid-cols-3 gap-5'>
         {
           services.map(service => {
             const { _id, title, images, fees, details } = service
             return (
               <div key={_id} className=" rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
-                <img src={images} alt={title} className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
+                <img src={images} alt={title} className="object-contain w-full rounded-t-md h-72 dark:bg-gray-500" />
                 <div className="flex flex-col justify-between p-6 space-y-8">
                   <div className="space-y-2">
                     <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
-                    <p className="dark:text-gray-100">{details}</p>
+                    <p className="dark:text-gray-100">{details.length > 150 ? <span>{details.slice(0, 150) + '...'}</span> : <span>{details}</span>}</p>
                     <p className="dark:text-gray-100">Fees: {fees}</p>
                   </div>
-                  <Link to={`/service/${_id}`}>
+                  <Link to={`/service/${_id}`} >
                     <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900">
                       Viwe Details
                     </button>
@@ -44,7 +39,10 @@ function Services() {
         }
       </div>
       <div className='w-full flex justify-center'>
-        <button onClick={handleLoadData} className='btn bg-purple-600 px-10 py-2 rounded-md mt-5'>See All</button>
+        <Link to='/allServices'>
+          <button className='btn bg-purple-600 px-10 py-2 rounded-md mt-5'>See All</button>
+        </Link>
+
       </div>
     </div>
   )
