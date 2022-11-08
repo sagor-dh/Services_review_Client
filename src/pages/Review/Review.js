@@ -21,7 +21,7 @@ function Review({ showReview }) {
                                             </svg>
                                         </p>
                                     </div>
-                                    <div className="flex flex-col items-center justify-center p-8 rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
+                                    <div className="flex flex-col items-center justify-center p-8 rounded-b-lg bg-indigo-600 text-white">
                                         <img src={review.userPhoto} alt="" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
                                         <p className="text-xl font-semibold leading-tight">{review.userName}</p>
                                         <p className="text-sm">{review.userEmail}</p>

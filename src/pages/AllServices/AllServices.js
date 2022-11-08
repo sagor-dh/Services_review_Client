@@ -25,13 +25,13 @@ function AllServices() {
                                     </PhotoView>
                                 </PhotoProvider>
                                 <div className="flex flex-col justify-between p-6 space-y-8">
-                                    <div className="space-y-2">
+                                    <div className="space-y-2 min-h-[200px] h-full">
                                         <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
                                         <p className="dark:text-gray-100">{details.length > 150 ? <span>{details.slice(0, 150) + '...'}</span> : <span>{details}</span>}</p>
                                         <p className="dark:text-gray-100">Fees: {fees}</p>
                                     </div>
                                     <Link to={`/service/${_id}`} >
-                                        <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900">
+                                        <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-indigo-600 text-white">
                                             Viwe Details
                                         </button>
                                     </Link>

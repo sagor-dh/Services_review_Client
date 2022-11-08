@@ -38,7 +38,7 @@ function AddReview({ service }) {
             <h1 className='text-3xl font-bold text-center'>Add your Review</h1>
             {
                 user && user.uid ?
-                    <form onSubmit={handleReviewSubmit} className='w-[500px] mx-auto mt-5'>
+                    <form onSubmit={handleReviewSubmit} className='max-w-[500px] mx-auto mt-5'>
                         <div className='grid grid-cols-2 gap-4'>
                             <input type="text" name="name" className='bg-gray-900 border border-white  h-10' defaultValue={user?.displayName} readOnly />
                             <input type="email" name="email" className='bg-gray-900 border border-white   h-10 ' defaultValue={user?.email} readOnly />

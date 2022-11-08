@@ -1,15 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthProvider';
+import Modal from '../Modal/Modal';
 
 function MyReview() {
   const { user } = useContext(AuthContext)
   const [reviews, setReviews] = useState([])
+
   useEffect(() => {
     fetch(`http://localhost:5000/review?email=${user.email}`)
       .then(res => res.json())
       .then(data => setReviews(data))
   }, [user.email])
+
+  const hendleDeleteReview = (id) =>{
+    fetch(`http://localhost:5000/review/${id}`, {
+      method:'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+       }
+    })
+    .then(res => res.json())
+    .then(data => {
+      const newData = reviews.filter(rvw => rvw._id !== id )
+      setReviews(newData)
+    })
+    .catch(err => console.log(err))
+  }
+
+  const hendleEditReview = (id) =>{
+    return <Modal/>
+  }
 
   return (
     <div>
@@ -30,7 +51,7 @@ function MyReview() {
             <tbody className="border-b dark:bg-gray-900 dark:border-gray-700">
               {
                 reviews.map(reiew => {
-                  const {userName, userEmail, serviceTitle, textarea} = reiew
+                  const {_id, userName, userEmail, serviceTitle, textarea} = reiew
                   return (
                     <tr key={reiew._id}>
                       <td className="px-3 py-2">
@@ -46,15 +67,15 @@ function MyReview() {
                         <p>{textarea}</p>
                       </td>
                       <td className="px-3 py-2 flex">
-                        <FaEdit className='text-xl' /><FaTrash className='text-xl ml-3' />
+                        
+                        <FaEdit className='text-xl'  onClick={hendleEditReview} />
+                        <FaTrash className='text-xl ml-3' onClick={()=>hendleDeleteReview(_id)} />
                       </td>
                     </tr>
                   )
                 })
               }
-
             </tbody>
-
           </table>
         </div>
       </div>
