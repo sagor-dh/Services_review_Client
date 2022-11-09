@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthProvider'
+import toast, { Toaster } from 'react-hot-toast';
 
 function AddReview({ service }) {
     const { user } = useContext(AuthContext)
@@ -26,12 +27,16 @@ function AddReview({ service }) {
             body: JSON.stringify(reviewerInfo)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.acknowledged) {
+                    toast('Add review successful')
+                }
+            })
         event.target.textarea.value = ''
 
     }
 
-    
+
 
     return (
         <div className=' pb-9'>
@@ -49,7 +54,7 @@ function AddReview({ service }) {
                     </form> :
                     <p className='text-2xl'>Please login to add a review. <Link to='/login' state={{ from: location }} replace className='text-rose-600 font-semibold underline text-3xl'>Log in</Link></p>
             }
-
+            <Toaster />
         </div>
     )
 }

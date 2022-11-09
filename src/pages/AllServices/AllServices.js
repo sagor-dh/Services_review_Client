@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import useTitle from '../../Hooks/useTitle';
 
 function AllServices() {
     const [services, setServices] = useState([])
+    useTitle('All Services')
     useEffect(() => {
         fetch(`http://localhost:5000/allServices`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
     return (
-        <div>
-            <h1 className='text-5xl font-bold text-center mt-7 mb-5'>My Service</h1>
+        <div className='bg-gray-800 text-gray-50 py-16'>
+            <h1 className='text-5xl font-bold text-center mb-5'>My Service</h1>
             <div className='grid grid-cols-3 gap-5'>
                 {
                     services.map(service => {

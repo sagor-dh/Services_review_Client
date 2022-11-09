@@ -30,7 +30,7 @@ function ContactUs() {
                             </p>
                         </div>
                     </div>
-                    <form novalidate="" className="flex flex-col py-6 space-y-6 md:py-0 md:px-6 ng-untouched ng-pristine ng-valid">
+                    <form noValidate="" className="flex flex-col py-6 space-y-6 md:py-0 md:px-6 ng-untouched ng-pristine ng-valid">
                         <label className="block">
                             <span className="mb-1">Full name</span>
                             <input type="text" placeholder="Leroy Jenkins" className="block rounded-sm w-full border border-white h-10 pl-3 shadow-sm focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:bg-gray-800" />
@@ -43,7 +43,7 @@ function ContactUs() {
                             <span className="mb-1">Message</span>
                             <textarea rows="3" className="block rounded-sm w-full border border-white h-52 pl-3 focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:bg-gray-800"></textarea>
                         </label>
-                        <button type="button" className=" px-5 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 dark:bg-violet-400 dark:text-gray-900 focus:ring-violet-400 hover:ring-violet-400">Submit</button>
+                        <button type="button" className=" px-5 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 bg-indigo-600 text-gray-50 focus:bg-indigo-400 hover:bg-indigo-600">Submit</button>
                     </form>
                 </div>
             </section>

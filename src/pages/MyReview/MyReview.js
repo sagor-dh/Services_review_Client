@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthProvider';
 import Modal from '../Modal/Modal';
+import toast, { Toaster } from 'react-hot-toast';
+import useTitle from '../../Hooks/useTitle';
 
 function MyReview() {
   const { user } = useContext(AuthContext)
   const [reviews, setReviews] = useState([])
-
+  useTitle("My Review")
   useEffect(() => {
     fetch(`http://localhost:5000/review?email=${user.email}`)
       .then(res => res.json())
@@ -22,6 +24,9 @@ function MyReview() {
     })
     .then(res => res.json())
     .then(data => {
+      if(data.deletedCount === 1){
+        toast('Deleae Successful')
+      }
       const newData = reviews.filter(rvw => rvw._id !== id )
       setReviews(newData)
     })
@@ -51,6 +56,7 @@ function MyReview() {
             </thead>
             <tbody className="border-b  border-gray-700">
               {
+                reviews.length === 0 ? <tr><td className='text-2xl text-yellow-600'> "No item review"</td></tr>:
                 reviews.map(reiew => {
                   const {_id, userName, userEmail, serviceTitle, textarea} = reiew
                   return (
@@ -69,8 +75,8 @@ function MyReview() {
                       </td>
                       <td className="px-3 py-2 flex">
                         
-                        <FaEdit className='text-xl'  onClick={hendleEditReview} />
-                        <FaTrash className='text-xl ml-3' onClick={()=>hendleDeleteReview(_id)} />
+                        <FaEdit className='text-xl cursor-pointer'  onClick={hendleEditReview} />
+                        <FaTrash className='text-xl ml-3 cursor-pointer' onClick={()=>hendleDeleteReview(_id)} />
                       </td>
                     </tr>
                   )
@@ -80,6 +86,7 @@ function MyReview() {
           </table>
         </div>
       </div>
+      <Toaster />
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import React from 'react'
+import useTitle from '../../Hooks/useTitle'
 
 function Block() {
+    useTitle("BLock")
     return (
         <div className='space-y-5 py-5 bg-gray-800'>
             <div className=" dark:text-gray-100">
