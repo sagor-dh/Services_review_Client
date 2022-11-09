@@ -6,14 +6,23 @@ import toast, { Toaster } from 'react-hot-toast';
 import useTitle from '../../Hooks/useTitle';
 
 function MyReview() {
-  const { user } = useContext(AuthContext)
+  const { user, userLogout } = useContext(AuthContext)
   const [reviews, setReviews] = useState([])
   useTitle("My Review")
   useEffect(() => {
-    fetch(`http://localhost:5000/review?email=${user.email}`)
-      .then(res => res.json())
+    fetch(`http://localhost:5000/review?email=${user.email}`,{
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => {
+        if(res.status === 401 || res.status === 403){
+          userLogout()
+        }
+        return res.json()
+      })
       .then(data => setReviews(data))
-  }, [user.email])
+  }, [user.email, userLogout])
 
   const hendleDeleteReview = (id) =>{
     fetch(`http://localhost:5000/review/${id}`, {

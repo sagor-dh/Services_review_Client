@@ -1,12 +1,16 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getAuth, updateProfile } from "firebase/auth";
 import { AuthContext } from '../../context/AuthProvider'
 import app from '../../fairbase/fairbase.config';
-
+import loginImg from '../../images/login.svg'
 const auth = getAuth(app)
 function Register() {
-    const {userRegister, userLoginWithGoogle} = useContext(AuthContext)
+    const { userRegister, userLoginWithGoogle } = useContext(AuthContext)
+    const [varify, setVarify] = useState('')
+    const location = useLocation()
+    const navigate = useNavigate()
+    const url = location.state?.from?.pathname || '/'
 
     const handleFormSubmit = (event) => {
         event.preventDefault()
@@ -16,59 +20,71 @@ function Register() {
         const photourl = form.photourl.value;
         const name = form.username.value;
 
+        if (name.length < 5) {
+            setVarify('Name enter min 5 character ')
+        }
+        else if (password.length < 6) {
+            setVarify('Password enter min 6 character ')
+        }
+        else {
+            setVarify('')
+        }
+
         userRegister(email, password)
-        .then(result => {
-            userUpdateProfile(name, photourl)
-            form.reset()
-        })
-        .catch(err => console.log(err))
+            .then(() => {
+                userUpdateProfile(name, photourl)
+                navigate(url, { replace: true })
+                form.reset()
+            })
+            .catch(err => console.log(err))
     }
 
-    const userUpdateProfile = (name, photourl) =>{
+    const userUpdateProfile = (name, photourl) => {
         updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photourl
         })
-        .then(()=>{})
-        .catch((err) => console.log(err))
+            .then(() => { })
+            .catch((err) => console.log(err))
     }
 
-    const handleGoogleLogin = () =>{
+    const handleGoogleLogin = () => {
         userLoginWithGoogle()
-        .then(()=>{})
-        .catch(err => console.log(err))
+            .then(() => { })
+            .catch(err => console.log(err))
     }
 
     return (
         <div>
-            <section className="p-6 dark:bg-gray-800 dark:text-gray-100">
+            <section className="p-6 bg-gray-800 text-gray-100">
                 <div className="container grid gap-6 mx-auto lg:grid-cols-2 xl:grid-cols-5">
-                    <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 dark:bg-gray-900">
-                        <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
+                    <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 bg-gray-900">
+                        <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100">
                             <h1 className="text-2xl font-bold text-center">Register</h1>
                             <form onSubmit={handleFormSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
                                 <div className="space-y-1 text-sm">
-                                    <label htmlFor="username" className="block dark:text-gray-400">Username</label>
-                                    <input type="text" name="username" placeholder="Username" className="w-full px-4 py-3 rounded-md border border-white dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                                    <label htmlFor="username" className="block text-gray-400">Username</label>
+                                    <input type="text" name="username" placeholder="Username" className="w-full px-4 py-3 rounded-md border border-white bg-gray-900 text-gray-100 focus:border-violet-400" />
                                 </div>
                                 <div className="space-y-1 text-sm">
-                                    <label htmlFor="photourl" className="block dark:text-gray-400">PhotoURL</label>
-                                    <input type="text" name="photourl" placeholder="PhotoURL" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                                    <label htmlFor="photourl" className="block text-gray-400">PhotoURL</label>
+                                    <input type="text" name="photourl" placeholder="PhotoURL" className="w-full px-4 py-3 rounded-md border border-white bg-gray-900 text-gray-100 focus:border-violet-400" />
                                 </div>
                                 <div className="space-y-1 text-sm">
-                                    <label htmlFor="email" className="block dark:text-gray-400">Email</label>
-                                    <input type="email" name="email" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                                    <label htmlFor="email" className="block text-gray-400">Email</label>
+                                    <input type="email" name="email" placeholder="Email" className="w-full px-4 py-3 rounded-md border border-white bg-gray-900 text-gray-100 focus:border-violet-400" />
                                 </div>
                                 <div className="space-y-1 text-sm">
-                                    <label htmlFor="password" className="block dark:text-gray-400">Password</label>
-                                    <input type="password" name="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                                    <label htmlFor="password" className="block text-gray-400">Password</label>
+                                    <input type="password" name="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border border-white bg-gray-900 text-gray-100 focus:border-violet-400" />
                                 </div>
-                                <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Register</button>
+                                <i className='text-red-600 '>{varify}</i>
+                                <button className="block w-full p-3 text-center rounded-sm  bg-orange-600 text-white">Register</button>
                             </form>
                             <div className="flex items-center pt-4 space-x-1">
-                                <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-                                <p className="px-3 text-sm dark:text-gray-400">Login with social accounts</p>
-                                <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+                                <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
+                                <p className="px-3 text-sm text-gray-400">Login with social accounts</p>
+                                <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
                             </div>
                             <div className="flex justify-center space-x-4">
                                 <button onClick={handleGoogleLogin} aria-label="Log in with Google" className="p-3 rounded-sm">
@@ -87,12 +103,12 @@ function Register() {
                                     </svg>
                                 </button>
                             </div>
-                            <p className="text-xs text-center sm:px-6 dark:text-gray-400">You have an account?
-                                <Link to='/login' className="underline dark:text-gray-100">Log in</Link>
+                            <p className="text-xs text-center sm:px-6 text-gray-400">You have an account?
+                                <Link to='/login' className="underline text-gray-100">Log in</Link>
                             </p>
                         </div>
                     </div>
-                    <img src="https://source.unsplash.com/random/480x360" alt="" className="object-cover w-full rounded-md xl:col-span-3 dark:bg-gray-500" />
+                    <img src={loginImg} alt="img" className="object-cover w-full h-full rounded-md xl:col-span-3 bg-gray-500" />
                 </div>
             </section>
         </div>
