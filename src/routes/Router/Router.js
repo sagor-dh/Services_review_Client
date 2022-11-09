@@ -9,6 +9,7 @@ import AddService from "../../pages/AddService/AddService";
 import Register from "../../pages/Register/Register";
 import ServiceDetails from "../../pages/ServiceDetails/ServiceDetails";
 import PriviteRoute from "../PriviteRoute";
+import ReviewEdit from "../../pages/ReviewEdit/ReviewEdit";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
             {
                 path:'/service/:id',
                 element:<ServiceDetails/>,
-                loader: ({params})=> fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({params})=> fetch(`https://module-70-server.vercel.app/service/${params.id}`)
             },
             {
                 path:'/allServices',
@@ -45,8 +46,13 @@ export const router = createBrowserRouter([
                 element:<Register/>
             },
             {
-                path:'block',
+                path:'/block',
                 element:<Block/>
+            },
+            {
+                path:'/reviewEdit/:id',
+                element:<ReviewEdit/>,
+                loader: async ({params})=> fetch(`https://module-70-server.vercel.app/reviewEdit/${params.id}`)
             }
         ]
     }

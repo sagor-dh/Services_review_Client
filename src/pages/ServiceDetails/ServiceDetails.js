@@ -9,7 +9,7 @@ function ServiceDetails() {
     const { _id, title, images, fees, details } = service
 
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${_id}`)
+        fetch(`https://module-70-server.vercel.app/review/${_id}`)
             .then(res => res.json())
             .then(data => setShowReview(data))
     }, [_id])

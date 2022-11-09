@@ -19,8 +19,10 @@ function Header() {
             <header className="p-4 bg-gray-900 text-gray-50 relative">
                 <div className='flex justify-between items-center'>
                     <div>
-                        <img src={logo} alt="logo" className='w-24 object-cover' />
+                        <img src={logo} alt="logo" className='w-12 object-cover' />
+                        <p className='font-semibold text-xl'>Life Care</p>
                     </div>
+                    {/* For dextop */}
                     <div className='hidden md:block'>
                         <ul className='flex space-x-5'>
                             <li>
@@ -41,8 +43,9 @@ function Header() {
                         </ul>
                     </div>
 
+                    {/* For Phone */}
                     <div className={`md:hidden absolute top-[100%] ${toggle ? 'left-[-100%]' : 'left-0'} transition-all  bg-gray-800 min-w-[300px] w-auto z-40`}>
-                        <ul className=''>
+                        <ul className='space-y-10 py-5 px-3 min-h-screen h-full '>
                             <li>
                                 <NavLink to='/'>Home</NavLink>
                             </li>
@@ -72,6 +75,7 @@ function Header() {
 
                         }
                     </div>
+                    {/* Navbar hide or show / toggle */}
                     <div className='md:hidden'>
                         {
                             toggle ? <FaBars className='text-3xl' onClick={() => setToggle(!toggle)} /> :

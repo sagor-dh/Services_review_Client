@@ -4,9 +4,9 @@ function Review({ showReview }) {
     return (
         <div className='grid grid-cols-1'>
             {
-                showReview.map(review => {
+                showReview.map((review, index) => {
                     return (
-                        <div key={review._id}>
+                        <div key={index}>
                             <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-10">
                                 <div className="flex flex-col mx-4 my-6 shadow-lg">
                                     <div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 bg-gray-900">

@@ -22,7 +22,7 @@ function Login() {
 
                 }
                 console.log(email)
-                fetch(`http://localhost:5000/jwt`,{
+                fetch(`https://module-70-server.vercel.app/jwt`,{
                     method:'POST',
                     headers:{
                         'content-type':'application/json'
