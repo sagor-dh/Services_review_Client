@@ -17,8 +17,6 @@ function ReviewEdit() {
             textarea
         }
 
-        console.log(review._id)
-
         fetch(`https://module-70-server.vercel.app/reviewEdit/${review._id}`, {
             method: 'PATCH',
             headers: {
@@ -41,17 +39,19 @@ function ReviewEdit() {
                     <p className="font-bold text-4xl ">Edit Review</p>
                 </div>
                 <div className="space-y-3 mt-5">
-                    <div className="">
-                        <label htmlFor="firstname" className="text-sm">Title</label>
-                        <input type="text" defaultValue={review.serviceTitle} placeholder="Title" readOnly name='title' className="w-full h-10 pl-2 rounded-sm  text-gray-900" />
-                    </div>
-                    <div className="">
-                        <label htmlFor="email" className="text-sm">Email</label>
-                        <input type="email" defaultValue={review.userEmail} placeholder="Email" readOnly name='email' className="w-full h-10 pl-2 rounded-sm  text-gray-900" />
-                    </div>
-                    <div className="">
-                        <label htmlFor="name" className="text-sm">Name</label>
-                        <input type="text" defaultValue={review.userName} placeholder="Name" name='name' readOnly className="w-full h-10 pl-2 rounded-sm  text-gray-900" />
+                    <div className='flex justify-between'>
+                        <div className="">
+                            <label htmlFor="firstname" className="text-sm">Title</label>
+                            <input type="text" defaultValue={review.serviceTitle} placeholder="Title" readOnly name='title' className="w-full h-10 pl-2 rounded-sm  text-gray-900" />
+                        </div>
+                        <div className="">
+                            <label htmlFor="email" className="text-sm">Email</label>
+                            <input type="email" defaultValue={review.userEmail} placeholder="Email" readOnly name='email' className="w-full h-10 pl-2 rounded-sm  text-gray-900" />
+                        </div>
+                        <div className="">
+                            <label htmlFor="name" className="text-sm">Name</label>
+                            <input type="text" defaultValue={review.userName} placeholder="Name" name='name' readOnly className="w-full h-10 pl-2 rounded-sm  text-gray-900" />
+                        </div>
                     </div>
                     <div className="">
                         <label htmlFor="details" className="text-sm">Details</label>

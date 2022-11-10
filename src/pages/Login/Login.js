@@ -21,7 +21,6 @@ function Login() {
                     email: result.user.email
 
                 }
-                console.log(email)
                 fetch(`https://module-70-server.vercel.app/jwt`,{
                     method:'POST',
                     headers:{

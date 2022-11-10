@@ -12,8 +12,7 @@ function MyReview() {
   const [reviews, setReviews] = useState([])
   useTitle("My Review")
   const naviget = useNavigate()
-  const [loading, setLoading] = useState(true)
-
+ 
   useEffect(() => {
     fetch(`https://module-70-server.vercel.app/review?email=${user.email}`, {
       headers: {
@@ -28,7 +27,6 @@ function MyReview() {
       })
       .then(data => {
         setReviews(data)
-        setLoading(false)
       })
   }, [user.email, userLogout])
 
@@ -55,8 +53,8 @@ function MyReview() {
   }
 
   return (
-    <div>
-      <div className="bg-gray-800 text-gray-100 py-28">
+    <div className='min-h-screen h-full bg-gray-800 text-gray-100 py-28'>
+      <div className="">
         {/* -----------Heading------------ */}
         <h1 className='text-4xl font-bold'>My Reviews</h1>
         {/* -----------Table------------ */}
@@ -75,7 +73,7 @@ function MyReview() {
               {
                 reviews.length === 0 ?
                 // ------------condaition for loading no item
-                  <Tr><Td><div className="w-16 h-16 border-4 mx-auto my-28 border-dashed rounded-full animate-spin dark:border-violet-400"></div></Td></Tr> ||
+                  <Tr><Td className='text-2xl text-yellow-600'>Just few second loding data...</Td></Tr> ||
                   <Tr><Td className='text-2xl text-yellow-600'> "No item review"</Td></Tr> :
                   reviews.map(reiew => {
                     // --------- Review Items

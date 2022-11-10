@@ -5,6 +5,7 @@ function ContactUs() {
         <div>
             <section className="py-6 mt-28">
                 <div className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
+                    {/* ---------- left side contact number and email */}
                     <div className="py-6 md:py-0 md:px-6">
                         <h1 className="text-4xl font-bold">Get in touch</h1>
                         <p className="pt-2 pb-4">Fill in the form to start a conversation</p>
@@ -30,7 +31,8 @@ function ContactUs() {
                             </p>
                         </div>
                     </div>
-                    <form noValidate="" className="flex flex-col py-6 space-y-6 md:py-0 md:px-6 ng-untouched ng-pristine ng-valid">
+                    {/* ----------- Right side Contact form */}
+                    <form className="flex flex-col py-6 space-y-6 md:py-0 md:px-6 ng-untouched ng-pristine ng-valid">
                         <label className="block">
                             <span className="mb-1">Full name</span>
                             <input type="text" placeholder="Leroy Jenkins" className="block rounded-sm w-full border border-white h-10 pl-3 shadow-sm focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:bg-gray-800" />
