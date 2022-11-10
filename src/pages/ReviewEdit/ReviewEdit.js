@@ -39,7 +39,7 @@ function ReviewEdit() {
                     <p className="font-bold text-4xl ">Edit Review</p>
                 </div>
                 <div className="space-y-3 mt-5">
-                    <div className='flex justify-between'>
+                    <div className='md:flex justify-between'>
                         <div className="">
                             <label htmlFor="firstname" className="text-sm">Title</label>
                             <input type="text" defaultValue={review.serviceTitle} placeholder="Title" readOnly name='title' className="w-full h-10 pl-2 rounded-sm  text-gray-900" />
