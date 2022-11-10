@@ -74,7 +74,6 @@ function MyReview() {
               {
                 reviews.length === 0 ?
                   // ------------condaition for loading no item
-                  <div><div className='text-2xl text-yellow-600'>Just few second loding data...</div></div> ||
                   <div><div className='text-2xl text-yellow-600'> "No item review"</div></div> :
                   reviews.map(reiew => {
                     // --------- Review Items
