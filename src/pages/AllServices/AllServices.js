@@ -20,7 +20,7 @@ function AllServices() {
     }, [])
 
     return (
-        <div className='bg-gray-800 text-gray-50 py-16'>
+        <div className='bg-gray-800 text-gray-50 py-16 px-4'>
             <h1 className='text-5xl font-bold text-center mb-5'>My Service</h1>
             <div>
                 {loading?<div className="w-16 h-16 border-4 mx-auto my-28 border-dashed rounded-full animate-spin dark:border-violet-400"></div>:

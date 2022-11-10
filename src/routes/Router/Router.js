@@ -48,7 +48,9 @@ export const router = createBrowserRouter([
             {
                 path:'/block',
                 element:<Block/>
-            },
+            }
+
+            ,
             {
                 path:'/reviewEdit/:id',
                 element:<ReviewEdit/>,
