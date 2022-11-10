@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthProvider'
 import loginImg from '../../images/login.svg'
+
 function Login() {
 
     const { userLogin, userLoginWithGoogle } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
+    const [error, setError] = useState('')
     const url = location.state?.from?.pathname || '/'
 
     const handleFormSubmit = (event) => {
@@ -36,7 +38,10 @@ function Login() {
                 form.reset()
 
             })
-            .catch(err => console.log(err))
+            .catch(error =>{
+                const errorCode = error.code.slice(5, -1);
+                setError(errorCode)
+            } )
         
     }
 
@@ -55,6 +60,7 @@ function Login() {
                     <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 bg-gray-900">
                         <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100">
                             <h1 className="text-2xl font-bold text-center">Login</h1>
+                            <p className='text-red-600 capitalize'>{error}</p>
                             <form onSubmit={handleFormSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
                                 <div className="space-y-1 text-sm">
                                     <label htmlFor="eamil" className="block text-gray-400">Email</label>

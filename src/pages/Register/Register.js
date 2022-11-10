@@ -8,6 +8,7 @@ const auth = getAuth(app)
 function Register() {
     const { userRegister, userLoginWithGoogle } = useContext(AuthContext)
     const [varify, setVarify] = useState('')
+    const [error, setError] = useState('')
     const location = useLocation()
     const navigate = useNavigate()
     const url = location.state?.from?.pathname || '/'
@@ -36,7 +37,10 @@ function Register() {
                 navigate(url, { replace: true })
                 form.reset()
             })
-            .catch(err => console.log(err))
+            .catch(error => {
+                const errorCode = error.code.slice(5, -1);
+                setError(errorCode)
+            })
     }
 
     const userUpdateProfile = (name, photourl) => {
@@ -45,7 +49,7 @@ function Register() {
             photoURL: photourl
         })
             .then(() => { })
-            .catch((err) => console.log(err))
+            .catch(() => {})
     }
 
     const handleGoogleLogin = () => {
@@ -63,6 +67,7 @@ function Register() {
                     <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 bg-gray-900">
                         <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100">
                             <h1 className="text-2xl font-bold text-center">Register</h1>
+                            <p className='text-red-600 capitalize'>{error}</p>
                             <form onSubmit={handleFormSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
                                 <div className="space-y-1 text-sm">
                                     <label htmlFor="username" className="block text-gray-400">Username</label>
