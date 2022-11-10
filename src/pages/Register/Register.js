@@ -50,7 +50,9 @@ function Register() {
 
     const handleGoogleLogin = () => {
         userLoginWithGoogle()
-            .then(() => { })
+            .then(() => { 
+                navigate(url, { replace: true })
+            })
             .catch(err => console.log(err))
     }
 
