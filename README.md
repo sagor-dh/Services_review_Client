@@ -10,8 +10,8 @@ Life Care is a services review website. Mein purpose creates of this site is for
 * This site's purpose is medical base service to provide 
 
 ## Technology : 
-React
-Firebase
-Express
-MongoDB
-Tailwind Css
+* React
+* Firebase
+* Express
+* MongoDB
+* Tailwind Css
