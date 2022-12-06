@@ -1,4 +1,5 @@
 # Life Care 
+Life Care is a services review website. Mein purpose creates of this site is for a user to review any service.
 
 ### Live Link : 
 
